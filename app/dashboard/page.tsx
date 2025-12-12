@@ -141,16 +141,22 @@ export default function DashboardPage() {
       const response = await createStripeCheckoutSession();
       console.log('Stripe checkout response:', response);
       
-      // Try multiple possible field names for the checkout URL
-      const checkoutUrl = 
-        response.url || 
-        response.checkoutUrl || 
-        response.checkout_url || 
-        response.sessionUrl || 
-        response.session_url ||
-        (typeof response === 'string' ? response : null);
+      // Check if the response itself is a string (the URL)
+      let checkoutUrl: string | null = null;
       
-      // Also check if the response itself is a string (the URL)
+      if (typeof response === 'string') {
+        checkoutUrl = response;
+      } else {
+        // Try multiple possible field names for the checkout URL
+        checkoutUrl = 
+          response.url || 
+          response.checkoutUrl || 
+          response.checkout_url || 
+          response.sessionUrl || 
+          response.session_url ||
+          null;
+      }
+      
       if (checkoutUrl && typeof checkoutUrl === 'string') {
         window.location.href = checkoutUrl;
       } else {
