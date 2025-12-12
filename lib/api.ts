@@ -21,15 +21,34 @@ export function removeToken(): void {
   Cookies.remove(TOKEN_KEY);
 }
 
+// Normalize header inputs into a mutable record
+function normalizeHeaders(input?: HeadersInit): Record<string, string> {
+  if (!input) return {};
+  if (input instanceof Headers) {
+    const obj: Record<string, string> = {};
+    input.forEach((value, key) => {
+      obj[key] = value;
+    });
+    return obj;
+  }
+  if (Array.isArray(input)) {
+    return input.reduce<Record<string, string>>((acc, [key, value]) => {
+      acc[key] = value;
+      return acc;
+    }, {});
+  }
+  return { ...(input as Record<string, string>) };
+}
+
 // API request wrapper
 async function apiRequest<T>(
   endpoint: string,
   options: RequestInit = {}
 ): Promise<T> {
   const token = getToken();
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
-    ...options.headers,
+    ...normalizeHeaders(options.headers),
   };
 
   if (token) {
@@ -115,7 +134,7 @@ export interface ClientMessage {
 
 export async function getClientMessages(): Promise<ClientMessage[]> {
   const token = getToken();
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };
 
@@ -152,7 +171,7 @@ export interface AnalyticsData {
 
 export async function getAnalytics(): Promise<AnalyticsData> {
   const token = getToken();
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };
 
@@ -185,7 +204,7 @@ export interface BadReview {
 
 export async function getBadReviews(): Promise<BadReview[]> {
   const token = getToken();
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };
 
@@ -218,7 +237,7 @@ export interface StripeCheckoutResponse {
 
 export async function createStripeCheckoutSession(): Promise<StripeCheckoutResponse | string> {
   const token = getToken();
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };
 
@@ -261,7 +280,7 @@ export interface ContactResponse {
 }
 
 export async function sendMail(data: ContactFormData): Promise<ContactResponse> {
-  const headers: HeadersInit = {
+  const headers: Record<string, string> = {
     'Content-Type': 'application/json',
   };
 
