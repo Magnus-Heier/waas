@@ -4,45 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useAuth } from '@/hooks/useAuth';
 import { useUser } from '@/hooks/useUser';
-import { getClientMessages, type ClientMessage } from '@/lib/api';
-
-// Placeholder analytics data (simulating Vercel Analytics)
-const analyticsData = {
-  pageViews: {
-    today: 1247,
-    yesterday: 1189,
-    change: 4.9,
-  },
-  uniqueVisitors: {
-    today: 892,
-    yesterday: 856,
-    change: 4.2,
-  },
-  topPages: [
-    { path: '/', views: 3421, unique: 2891 },
-    { path: '/products', views: 2156, unique: 1892 },
-    { path: '/about', views: 1234, unique: 1098 },
-    { path: '/contact', views: 987, unique: 856 },
-  ],
-  topReferrers: [
-    { source: 'google.com', visits: 1234 },
-    { source: 'direct', visits: 892 },
-    { source: 'twitter.com', visits: 456 },
-    { source: 'linkedin.com', visits: 234 },
-  ],
-  topCountries: [
-    { country: 'United States', visits: 3421 },
-    { country: 'United Kingdom', visits: 1234 },
-    { country: 'Canada', visits: 892 },
-    { country: 'Germany', visits: 567 },
-  ],
-  topBrowsers: [
-    { browser: 'Chrome', visits: 4567, percentage: 52.3 },
-    { browser: 'Safari', visits: 2345, percentage: 26.8 },
-    { browser: 'Firefox', visits: 1234, percentage: 14.1 },
-    { browser: 'Edge', visits: 623, percentage: 7.1 },
-  ],
-};
+import { getClientMessages, type ClientMessage, getAnalytics, type AnalyticsData, getBadReviews, type BadReview, createStripeCheckoutSession } from '@/lib/api';
 
 // Helper function to process message and convert escaped newlines to actual newlines
 // Also normalizes excessive consecutive newlines (more than 2) to maximum 2
@@ -62,6 +24,13 @@ export default function DashboardPage() {
   const [phoneNumber, setPhoneNumber] = useState<string>('');
   const [loadingMessages, setLoadingMessages] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [analytics, setAnalytics] = useState<AnalyticsData | null>(null);
+  const [loadingAnalytics, setLoadingAnalytics] = useState(false);
+  const [analyticsError, setAnalyticsError] = useState<string | null>(null);
+  const [badReviews, setBadReviews] = useState<BadReview[]>([]);
+  const [loadingBadReviews, setLoadingBadReviews] = useState(false);
+  const [badReviewsError, setBadReviewsError] = useState<string | null>(null);
+  const [loadingStripe, setLoadingStripe] = useState(false);
   const { logout } = useAuth();
   const { user, loading: userLoading } = useUser();
 
@@ -93,8 +62,42 @@ export default function DashboardPage() {
       }
     };
 
+    const fetchAnalytics = async () => {
+      setLoadingAnalytics(true);
+      setAnalyticsError(null);
+      try {
+        const data = await getAnalytics();
+        setAnalytics(data);
+      } catch (err: any) {
+        setAnalyticsError(err.message || 'Failed to load analytics');
+        console.error('Error fetching analytics:', err);
+      } finally {
+        setLoadingAnalytics(false);
+      }
+    };
+
+    const fetchBadReviews = async () => {
+      setLoadingBadReviews(true);
+      setBadReviewsError(null);
+      try {
+        const reviews = await getBadReviews();
+        console.log('Bad reviews data:', reviews);
+        if (reviews && reviews.length > 0) {
+          console.log('First review sample:', reviews[0]);
+        }
+        setBadReviews(reviews);
+      } catch (err: any) {
+        setBadReviewsError(err.message || 'Failed to load bad reviews');
+        console.error('Error fetching bad reviews:', err);
+      } finally {
+        setLoadingBadReviews(false);
+      }
+    };
+
     if (mounted) {
       fetchMessages();
+      fetchAnalytics();
+      fetchBadReviews();
     }
   }, [mounted]);
 
@@ -129,6 +132,36 @@ export default function DashboardPage() {
     // Reset edited message to selected message when closing
     if (selectedMessage) {
       setEditedMessage(selectedMessage.message);
+    }
+  };
+
+  const handlePayWithStripe = async () => {
+    setLoadingStripe(true);
+    try {
+      const response = await createStripeCheckoutSession();
+      console.log('Stripe checkout response:', response);
+      
+      // Try multiple possible field names for the checkout URL
+      const checkoutUrl = 
+        response.url || 
+        response.checkoutUrl || 
+        response.checkout_url || 
+        response.sessionUrl || 
+        response.session_url ||
+        (typeof response === 'string' ? response : null);
+      
+      // Also check if the response itself is a string (the URL)
+      if (checkoutUrl && typeof checkoutUrl === 'string') {
+        window.location.href = checkoutUrl;
+      } else {
+        console.error('Response structure:', response);
+        throw new Error('No checkout URL received from server. Check console for response details.');
+      }
+    } catch (err: any) {
+      alert(err.message || 'Failed to create checkout session');
+      console.error('Error creating Stripe checkout session:', err);
+    } finally {
+      setLoadingStripe(false);
     }
   };
 
@@ -176,13 +209,20 @@ export default function DashboardPage() {
             <p className="text-lg text-gray-600">Vercel Analytics Overview</p>
           </div>
 
-          {/* Request Review Button */}
-          <div className="mb-8">
+          {/* Action Buttons */}
+          <div className="mb-8 flex gap-4">
             <button
               onClick={handleRequestReview}
               className="px-6 py-3 text-base font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors"
             >
               Request Client Review
+            </button>
+            <button
+              onClick={handlePayWithStripe}
+              disabled={loadingStripe}
+              className="px-6 py-3 text-base font-medium text-white bg-purple-600 rounded-lg hover:bg-purple-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {loadingStripe ? 'Loading...' : 'Pay with Stripe'}
             </button>
           </div>
 
@@ -191,105 +231,187 @@ export default function DashboardPage() {
             <div className="bg-white rounded-lg p-6 border border-gray-200">
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <p className="text-sm font-medium text-gray-600 mb-1">Page Views</p>
-                  <p className="text-3xl font-semibold text-gray-900">{analyticsData.pageViews.today.toLocaleString()}</p>
-                </div>
-                <div className={`text-sm font-medium ${analyticsData.pageViews.change > 0 ? 'text-green-600' : 'text-red-600'}`}>
-                  {analyticsData.pageViews.change > 0 ? '+' : ''}{analyticsData.pageViews.change}%
+                  <p className="text-sm font-medium text-gray-600 mb-1">Unique Visits</p>
+                  {loadingAnalytics ? (
+                    <p className="text-3xl font-semibold text-gray-400">Loading...</p>
+                  ) : analyticsError ? (
+                    <p className="text-sm text-red-600">{analyticsError}</p>
+                  ) : (
+                    <p className="text-3xl font-semibold text-gray-900">
+                      {analytics?.unique_visits?.toLocaleString() || 0}
+                    </p>
+                  )}
                 </div>
               </div>
-              <p className="text-sm text-gray-500">vs {analyticsData.pageViews.yesterday.toLocaleString()} yesterday</p>
+              <p className="text-sm text-gray-500">Total unique visitors</p>
             </div>
 
             <div className="bg-white rounded-lg p-6 border border-gray-200">
               <div className="flex justify-between items-start mb-4">
                 <div>
-                  <p className="text-sm font-medium text-gray-600 mb-1">Unique Visitors</p>
-                  <p className="text-3xl font-semibold text-gray-900">{analyticsData.uniqueVisitors.today.toLocaleString()}</p>
-                </div>
-                <div className={`text-sm font-medium ${analyticsData.uniqueVisitors.change > 0 ? 'text-green-600' : 'text-red-600'}`}>
-                  {analyticsData.uniqueVisitors.change > 0 ? '+' : ''}{analyticsData.uniqueVisitors.change}%
+                  <p className="text-sm font-medium text-gray-600 mb-1">Total Page Views</p>
+                  {loadingAnalytics ? (
+                    <p className="text-3xl font-semibold text-gray-400">Loading...</p>
+                  ) : analyticsError ? (
+                    <p className="text-sm text-red-600">{analyticsError}</p>
+                  ) : (
+                    <p className="text-3xl font-semibold text-gray-900">
+                      {analytics?.views_pr_page 
+                        ? Object.values(analytics.views_pr_page).reduce((sum, views) => sum + views, 0).toLocaleString()
+                        : 0}
+                    </p>
+                  )}
                 </div>
               </div>
-              <p className="text-sm text-gray-500">vs {analyticsData.uniqueVisitors.yesterday.toLocaleString()} yesterday</p>
+              <p className="text-sm text-gray-500">Across all pages</p>
             </div>
           </div>
 
-          {/* Top Pages */}
+          {/* Views Per Page - Horizontal Bar Chart */}
           <div className="bg-white rounded-lg p-6 border border-gray-200 mb-8">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">Top Pages</h2>
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-gray-200">
-                    <th className="text-left py-3 px-4 text-sm font-medium text-gray-600">Page</th>
-                    <th className="text-right py-3 px-4 text-sm font-medium text-gray-600">Views</th>
-                    <th className="text-right py-3 px-4 text-sm font-medium text-gray-600">Unique</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {analyticsData.topPages.map((page, index) => (
-                    <tr key={index} className="border-b border-gray-100">
-                      <td className="py-3 px-4 text-sm text-gray-900 font-mono">{page.path}</td>
-                      <td className="py-3 px-4 text-sm text-gray-700 text-right">{page.views.toLocaleString()}</td>
-                      <td className="py-3 px-4 text-sm text-gray-700 text-right">{page.unique.toLocaleString()}</td>
-                    </tr>
+            <h2 className="text-xl font-semibold text-gray-900 mb-6">Views Per Page</h2>
+            {loadingAnalytics ? (
+              <div className="text-center py-12">
+                <p className="text-gray-500">Loading analytics...</p>
+              </div>
+            ) : analyticsError ? (
+              <div className="text-center py-12">
+                <p className="text-red-600">{analyticsError}</p>
+              </div>
+            ) : !analytics?.views_pr_page || Object.keys(analytics.views_pr_page).length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-gray-500">No page view data available</p>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {Object.entries(analytics.views_pr_page)
+                  .sort(([, a], [, b]) => b - a)
+                  .map(([page, views]) => {
+                    const maxViews = Math.max(...Object.values(analytics.views_pr_page));
+                    const percentage = maxViews > 0 ? (views / maxViews) * 100 : 0;
+                    
+                    return (
+                      <div key={page} className="space-y-2">
+                        <div className="flex justify-between items-center">
+                          <span className="text-sm font-medium text-gray-900 font-mono">
+                            {page || '/'}
+                          </span>
+                          <span className="text-sm font-semibold text-gray-700">
+                            {views.toLocaleString()} {views === 1 ? 'view' : 'views'}
+                          </span>
+                        </div>
+                        <div className="relative w-full h-8 bg-gray-100 rounded-lg overflow-hidden">
+                          <div
+                            className="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 to-blue-600 rounded-lg transition-all duration-500 ease-out shadow-sm"
+                            style={{ width: `${percentage}%` }}
+                          >
+                            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"></div>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+              </div>
+            )}
+          </div>
+
+          {/* Top Referrers */}
+          <div className="bg-white rounded-lg p-6 border border-gray-200 mb-8">
+            <h2 className="text-xl font-semibold text-gray-900 mb-6">Top Referrers</h2>
+            {loadingAnalytics ? (
+              <div className="text-center py-12">
+                <p className="text-gray-500">Loading analytics...</p>
+              </div>
+            ) : analyticsError ? (
+              <div className="text-center py-12">
+                <p className="text-red-600">{analyticsError}</p>
+              </div>
+            ) : !analytics?.top_referers || analytics.top_referers.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-gray-500">No referrer data available</p>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {analytics.top_referers
+                  .sort((a, b) => b.count - a.count)
+                  .map((referrer, index) => (
+                    <div key={index} className="flex justify-between items-center">
+                      <span className="text-sm text-gray-900 break-all pr-4">{referrer.ref}</span>
+                      <span className="text-sm font-medium text-gray-700 whitespace-nowrap">
+                        {referrer.count.toLocaleString()} {referrer.count === 1 ? 'visit' : 'visits'}
+                      </span>
+                    </div>
                   ))}
-                </tbody>
-              </table>
-            </div>
+              </div>
+            )}
           </div>
 
-          {/* Two Column Layout */}
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            {/* Top Referrers */}
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6">Top Referrers</h2>
-              <div className="space-y-4">
-                {analyticsData.topReferrers.map((referrer, index) => (
-                  <div key={index} className="flex justify-between items-center">
-                    <span className="text-sm text-gray-900">{referrer.source}</span>
-                    <span className="text-sm font-medium text-gray-700">{referrer.visits.toLocaleString()}</span>
-                  </div>
-                ))}
+          {/* Bad Reviews */}
+          <div className="bg-white rounded-lg p-6 border border-gray-200 mb-8">
+            <h2 className="text-xl font-semibold text-gray-900 mb-6">Bad Reviews</h2>
+            {loadingBadReviews ? (
+              <div className="text-center py-12">
+                <p className="text-gray-500">Loading bad reviews...</p>
               </div>
-            </div>
-
-            {/* Top Countries */}
-            <div className="bg-white rounded-lg p-6 border border-gray-200">
-              <h2 className="text-xl font-semibold text-gray-900 mb-6">Top Countries</h2>
-              <div className="space-y-4">
-                {analyticsData.topCountries.map((country, index) => (
-                  <div key={index} className="flex justify-between items-center">
-                    <span className="text-sm text-gray-900">{country.country}</span>
-                    <span className="text-sm font-medium text-gray-700">{country.visits.toLocaleString()}</span>
-                  </div>
-                ))}
+            ) : badReviewsError ? (
+              <div className="text-center py-12">
+                <p className="text-red-600">{badReviewsError}</p>
               </div>
-            </div>
-          </div>
+            ) : badReviews.length === 0 ? (
+              <div className="text-center py-12">
+                <p className="text-gray-500">No bad reviews available</p>
+              </div>
+            ) : (
+              <div className="space-y-6">
+                {badReviews.map((review, index) => {
+                  const date = new Date(review.created_at);
+                  const formattedDate = date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                  });
 
-          {/* Top Browsers */}
-          <div className="bg-white rounded-lg p-6 border border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900 mb-6">Top Browsers</h2>
-            <div className="space-y-4">
-              {analyticsData.topBrowsers.map((browser, index) => (
-                <div key={index}>
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm text-gray-900">{browser.browser}</span>
-                    <span className="text-sm font-medium text-gray-700">
-                      {browser.visits.toLocaleString()} ({browser.percentage}%)
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-200 rounded-full h-2">
-                    <div
-                      className="bg-blue-600 h-2 rounded-full"
-                      style={{ width: `${browser.percentage}%` }}
-                    ></div>
-                  </div>
-                </div>
-              ))}
-            </div>
+                  // Handle both "starts" and "stars" field names, and ensure it's a number
+                  const starRating = Number((review as any).stars ?? (review as any).starts ?? 0);
+                  const validStarRating = Math.max(0, Math.min(5, starRating)); // Clamp between 0-5
+
+                  return (
+                    <div key={index} className="border-b border-gray-200 last:border-b-0 pb-6 last:pb-0">
+                      <div className="flex justify-between items-start mb-3">
+                        <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-0.5">
+                            {Array.from({ length: 5 }).map((_, i) => {
+                              const starValue = i + 1;
+                              const isFilled = starValue <= validStarRating;
+                              return (
+                                <svg
+                                  key={i}
+                                  className={`w-5 h-5 ${
+                                    isFilled ? 'text-yellow-400' : 'text-gray-300'
+                                  }`}
+                                  fill="currentColor"
+                                  viewBox="0 0 20 20"
+                                  xmlns="http://www.w3.org/2000/svg"
+                                >
+                                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                </svg>
+                              );
+                            })}
+                          </div>
+                          <span className="text-sm font-medium text-gray-700">
+                            {validStarRating} {validStarRating === 1 ? 'star' : 'stars'}
+                          </span>
+                        </div>
+                        <span className="text-sm text-gray-500">{formattedDate}</span>
+                      </div>
+                      <p className="text-base text-gray-900 whitespace-pre-wrap">{review.message}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
       </div>

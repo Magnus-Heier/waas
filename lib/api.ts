@@ -136,3 +136,146 @@ export async function getClientMessages(): Promise<ClientMessage[]> {
   return response.json();
 }
 
+// Analytics
+const ANALYTICS_BASE_URL = 'https://x8ki-letl-twmt.n7.xano.io/api:noTfiLGv';
+
+export interface TopReferrer {
+  ref: string;
+  count: number;
+}
+
+export interface AnalyticsData {
+  unique_visits: number;
+  views_pr_page: Record<string, number>;
+  top_referers: TopReferrer[];
+}
+
+export async function getAnalytics(): Promise<AnalyticsData> {
+  const token = getToken();
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+  };
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  const response = await fetch(`${ANALYTICS_BASE_URL}/event`, {
+    method: 'GET',
+    headers,
+  });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ message: 'An error occurred' }));
+    throw new Error(error.message || `HTTP error! status: ${response.status}`);
+  }
+
+  return response.json();
+}
+
+// Bad Reviews
+const BAD_REVIEWS_BASE_URL = 'https://x8ki-letl-twmt.n7.xano.io/api:U0lx3VKt';
+
+export interface BadReview {
+  starts?: number;
+  stars?: number; // Handle both field names
+  message: string;
+  created_at: string;
+}
+
+export async function getBadReviews(): Promise<BadReview[]> {
+  const token = getToken();
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+  };
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  const response = await fetch(`${BAD_REVIEWS_BASE_URL}/bad_reviews`, {
+    method: 'GET',
+    headers,
+  });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ message: 'An error occurred' }));
+    throw new Error(error.message || `HTTP error! status: ${response.status}`);
+  }
+
+  return response.json();
+}
+
+// Stripe Checkout
+const STRIPE_BASE_URL = 'https://x8ki-letl-twmt.n7.xano.io/api:TLCFxgq6';
+
+export interface StripeCheckoutResponse {
+  url?: string;
+  checkoutUrl?: string;
+  sessionId?: string;
+  [key: string]: any;
+}
+
+export async function createStripeCheckoutSession(): Promise<StripeCheckoutResponse | string> {
+  const token = getToken();
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+  };
+
+  if (token) {
+    headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  const response = await fetch(`${STRIPE_BASE_URL}/stripe/create-checkout-session`, {
+    method: 'POST',
+    headers,
+  });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ message: 'An error occurred' }));
+    throw new Error(error.message || `HTTP error! status: ${response.status}`);
+  }
+
+  // Check content type to handle both JSON and plain text responses
+  const contentType = response.headers.get('content-type');
+  if (contentType && contentType.includes('application/json')) {
+    return response.json();
+  } else {
+    // If it's not JSON, return as text (might be the URL directly)
+    return response.text();
+  }
+}
+
+// Contact Form
+const CONTACT_BASE_URL = 'https://x8ki-letl-twmt.n7.xano.io/api:Cm6IdgwM';
+
+export interface ContactFormData {
+  name: string;
+  email: string;
+  product: string;
+  message: string;
+}
+
+export interface ContactResponse {
+  http_response: number;
+}
+
+export async function sendMail(data: ContactFormData): Promise<ContactResponse> {
+  const headers: HeadersInit = {
+    'Content-Type': 'application/json',
+  };
+
+  const response = await fetch(`${CONTACT_BASE_URL}/send_mail`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify(data),
+  });
+
+  if (!response.ok) {
+    const error = await response.json().catch(() => ({ message: 'An error occurred' }));
+    throw new Error(error.message || `HTTP error! status: ${response.status}`);
+  }
+
+  return response.json();
+}
+
