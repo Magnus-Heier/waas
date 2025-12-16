@@ -234,17 +234,14 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Laptop Display Section */}
+      {/* Laptop Display Section - Commented out */}
+      {/*
       <section className="py-24 px-6 lg:px-8 bg-gray-50">
         <div className="max-w-5xl mx-auto">
           <div className="flex justify-center">
-            {/* Laptop Mockup */}
             <div className="relative w-full max-w-4xl">
-              {/* Laptop Base */}
               <div className="relative bg-gray-300 rounded-t-lg pt-2 pb-8 px-4 shadow-2xl">
-                {/* Screen */}
                 <div className="bg-gray-800 rounded-lg overflow-hidden shadow-inner">
-                  {/* Screen Bezel */}
                   <div className="bg-gray-900 pt-3 pb-2 px-3">
                     <div className="flex gap-2">
                       <div className="w-3 h-3 rounded-full bg-red-500"></div>
@@ -252,18 +249,42 @@ export default function Home() {
                       <div className="w-3 h-3 rounded-full bg-green-500"></div>
                     </div>
                   </div>
-                  {/* Screen Content - Empty for now */}
                   <div className="aspect-video bg-white flex items-center justify-center">
                     <div className="text-gray-400 text-lg">
-                      {/* Empty screen - ready for content */}
                     </div>
                   </div>
                 </div>
               </div>
-              {/* Laptop Bottom */}
               <div className="h-2 bg-gray-400 rounded-b-lg"></div>
-              {/* Laptop Hinge */}
               <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gray-500 rounded-full"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+      */}
+
+      {/* Om Weboki Section */}
+      <section className="py-32 px-6 lg:px-8 bg-gray-50">
+        <div className="max-w-4xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-12 sm:p-16">
+            <div className="text-center">
+              <h2 className="text-4xl sm:text-5xl font-semibold text-gray-900 mb-4">
+                Om Weboki
+              </h2>
+              <p className="text-base sm:text-lg text-gray-600 mb-10">
+                Basert i Asker - jobber med kunder i hele Norge
+              </p>
+              <div className="space-y-6 max-w-2xl mx-auto">
+                <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+                  Weboki er et lite norsk web- og KI-studio som hjelper små bedrifter med enkle, effektive digitale løsninger.
+                </p>
+                <p className="text-lg sm:text-xl text-gray-700 leading-relaxed">
+                  Vi fokuserer på klare avtaler, fast pris og rask levering — uten komplisert teknisk språk.
+                </p>
+                <p className="text-lg sm:text-xl text-gray-700 leading-relaxed pt-2">
+                  Ta kontakt hvis du vil ta en uforpliktende prat.
+                </p>
+              </div>
             </div>
           </div>
         </div>
