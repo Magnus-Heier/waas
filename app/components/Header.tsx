@@ -156,7 +156,7 @@ export function Header() {
         <div className="flex items-center gap-2">
           <Link
             href={isHome ? "#kontakt" : "/#kontakt"}
-            className="rounded-lg bg-[#f5a623] px-5 py-2.5 text-sm font-semibold text-[#1a1a1a] transition hover:bg-[#e0951f]"
+            className="rounded-lg bg-[#3b82f6] px-5 py-2.5 text-sm font-semibold text-[#1a1a1a] transition hover:bg-[#2563eb]"
           >
             Kontakt
           </Link>

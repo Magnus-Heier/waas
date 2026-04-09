@@ -18,11 +18,11 @@ export default function Home() {
           className="relative flex min-h-screen flex-col items-center justify-center px-4 py-20 text-center md:px-6"
         >
           <div
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(245,166,35,0.15),transparent)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(59,130,246,0.15),transparent)]"
             aria-hidden
           />
-          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#f5a623]/40 bg-[#f5a623]/10 px-4 py-1.5 text-sm text-[#f5a623]">
-            <span className="h-2 w-2 rounded-full bg-[#f5a623]" />
+          <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-[#3b82f6]/40 bg-[#3b82f6]/10 px-4 py-1.5 text-sm text-[#3b82f6]">
+            <span className="h-2 w-2 rounded-full bg-[#3b82f6]" />
             Tar nå imot nye kunder
           </span>
           <h1 className="relative max-w-4xl text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
@@ -33,39 +33,39 @@ export default function Home() {
             Nettsiden er live på 3–7 dager. Betjener småbedrifter over hele
             Norge.
           </p>
-          <p className="relative mt-6 inline-block rounded-full bg-[#f5a623] px-6 py-2.5 text-xl font-bold text-[#0a0a0a] shadow-[0_0_20px_rgba(245,166,35,0.3)]">
+          <p className="relative mt-6 inline-block rounded-full bg-[#3b82f6] px-6 py-2.5 text-xl font-bold text-[#0a0a0a] shadow-[0_0_20px_rgba(59,130,246,0.3)]">
             Bli en av våre 5 første kunder med halv pris på bygging og de 3 første
             månedene
           </p>
           <div className="relative mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <a
               href="#kontakt"
-              className="inline-flex items-center justify-center rounded-lg bg-[#f5a623] px-6 py-3.5 font-semibold text-[#1a1a1a] transition hover:bg-[#e0951f]"
+              className="inline-flex items-center justify-center rounded-lg bg-[#3b82f6] px-6 py-3.5 font-semibold text-[#1a1a1a] transition hover:bg-[#2563eb]"
             >
               Få Gratis Hjemmesidedesign →
             </a>
             <a
               href="tel:+4748660715"
-              className="inline-flex items-center justify-center rounded-lg border border-white/30 px-6 py-3.5 font-semibold transition hover:border-[#f5a623] hover:bg-white/5"
+              className="inline-flex items-center justify-center rounded-lg border border-white/30 px-6 py-3.5 font-semibold transition hover:border-[#3b82f6] hover:bg-white/5"
             >
               Ring Nå: +47 48 66 07 15
             </a>
           </div>
           <div className="relative mt-14 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-gray-400">
             <span className="flex items-center gap-2">
-              <svg className="h-5 w-5 text-[#f5a623]" fill="currentColor" viewBox="0 0 20 20">
+              <svg className="h-5 w-5 text-[#3b82f6]" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
               </svg>
               Betrodd over hele Norge
             </span>
             <span className="flex items-center gap-2">
-              <svg className="h-5 w-5 text-[#f5a623]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="h-5 w-5 text-[#3b82f6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
               Rask 3–7 dagers levering
             </span>
             <span className="flex items-center gap-2">
-              <svg className="h-5 w-5 text-[#f5a623]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="h-5 w-5 text-[#3b82f6]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
@@ -85,20 +85,20 @@ export default function Home() {
             </p>
           </div>
           <div className="mx-auto mt-12 grid max-w-5xl gap-8 md:grid-cols-3">
-            <div className="rounded-xl border border-white/10 bg-white/5 p-8 text-center transition hover:border-[#f5a623]/40 hover:bg-white/[0.07]">
-              <p className="text-4xl font-bold text-[#f5a623] md:text-5xl">80%</p>
+            <div className="rounded-xl border border-white/10 bg-white/5 p-8 text-center transition hover:border-[#3b82f6]/40 hover:bg-white/[0.07]">
+              <p className="text-4xl font-bold text-[#3b82f6] md:text-5xl">80%</p>
               <p className="mt-4 text-gray-300">
                 av forbrukere søker på nett før de besøker en lokal bedrift
               </p>
             </div>
-            <div className="rounded-xl border border-white/10 bg-white/5 p-8 text-center transition hover:border-[#f5a623]/40 hover:bg-white/[0.07]">
-              <p className="text-4xl font-bold text-[#f5a623] md:text-5xl">46%</p>
+            <div className="rounded-xl border border-white/10 bg-white/5 p-8 text-center transition hover:border-[#3b82f6]/40 hover:bg-white/[0.07]">
+              <p className="text-4xl font-bold text-[#3b82f6] md:text-5xl">46%</p>
               <p className="mt-4 text-gray-300">
                 av alle Google-søk er etter lokal informasjon
               </p>
             </div>
-            <div className="rounded-xl border border-white/10 bg-white/5 p-8 text-center transition hover:border-[#f5a623]/40 hover:bg-white/[0.07]">
-              <p className="text-4xl font-bold text-[#f5a623] md:text-5xl">75%</p>
+            <div className="rounded-xl border border-white/10 bg-white/5 p-8 text-center transition hover:border-[#3b82f6]/40 hover:bg-white/[0.07]">
+              <p className="text-4xl font-bold text-[#3b82f6] md:text-5xl">75%</p>
               <p className="mt-4 text-gray-300">
                 av brukere vurderer en bedrifts troverdighet basert på nettsiden
               </p>
@@ -135,7 +135,7 @@ export default function Home() {
             ].map((s) => (
               <div
                 key={s.title}
-                className="rounded-xl border border-white/10 bg-white/5 p-6 transition hover:border-[#f5a623]/40 hover:bg-white/[0.07]"
+                className="rounded-xl border border-white/10 bg-white/5 p-6 transition hover:border-[#3b82f6]/40 hover:bg-white/[0.07]"
               >
                 <h3 className="text-lg font-semibold">{s.title}</h3>
                 <p className="mt-2 text-gray-400">{s.desc}</p>
@@ -162,9 +162,9 @@ export default function Home() {
             ].map((i) => (
               <div
                 key={i.name}
-                className="rounded-xl border border-white/10 bg-white/5 p-6 transition hover:border-[#f5a623]/40 hover:bg-white/[0.07]"
+                className="rounded-xl border border-white/10 bg-white/5 p-6 transition hover:border-[#3b82f6]/40 hover:bg-white/[0.07]"
               >
-                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#f5a623]/20 text-[#f5a623]">
+                <div className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#3b82f6]/20 text-[#3b82f6]">
                   <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9a9 9 0 009 9m-9-9a9 9 0 009-9" />
                   </svg>
@@ -173,7 +173,7 @@ export default function Home() {
                 <p className="mt-1 text-sm text-gray-400">{i.desc}</p>
                 <a
                   href="#"
-                  className="mt-3 inline-block text-sm font-medium text-[#f5a623] hover:underline"
+                  className="mt-3 inline-block text-sm font-medium text-[#3b82f6] hover:underline"
                 >
                   Les mer
                 </a>
@@ -194,7 +194,7 @@ export default function Home() {
               {["Oslo", "Bergen", "Trondheim", "Stavanger", "Kristiansand", "Tromsø"].map(
                 (city) => (
                   <li key={city} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#f5a623]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#3b82f6]" />
                     {city}
                   </li>
                 )
@@ -204,7 +204,7 @@ export default function Home() {
               {["Drammen", "Fredrikstad", "Sandnes", "Bodø", "Ålesund", "Haugesund"].map(
                 (city) => (
                   <li key={city} className="flex items-center gap-2">
-                    <span className="h-1.5 w-1.5 rounded-full bg-[#f5a623]" />
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#3b82f6]" />
                     {city}
                   </li>
                 )
@@ -242,9 +242,9 @@ export default function Home() {
             ].map((item) => (
               <div
                 key={item.step}
-                className="rounded-xl border border-white/10 bg-white/5 p-8 transition hover:border-[#f5a623]/40 hover:bg-white/[0.07]"
+                className="rounded-xl border border-white/10 bg-white/5 p-8 transition hover:border-[#3b82f6]/40 hover:bg-white/[0.07]"
               >
-                <span className="text-3xl font-bold text-[#f5a623]">{item.step}</span>
+                <span className="text-3xl font-bold text-[#3b82f6]">{item.step}</span>
                 <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
                 <p className="mt-2 text-gray-400">{item.desc}</p>
               </div>
@@ -273,15 +273,15 @@ export default function Home() {
               <p className="mt-4 text-sm text-gray-400">Best for: Salonger, restauranter, frisører</p>
               <a
                 href="#kontakt"
-                className="mt-6 block w-full rounded-lg border border-white/30 py-2.5 text-center font-semibold transition hover:border-[#f5a623] hover:bg-[#f5a623]/10"
+                className="mt-6 block w-full rounded-lg border border-white/30 py-2.5 text-center font-semibold transition hover:border-[#3b82f6] hover:bg-[#3b82f6]/10"
               >
                 Kom i Gang
               </a>
             </div>
 
             {/* Profesjonell - highlighted */}
-            <div className="relative rounded-xl border-2 border-[#f5a623] bg-[#f5a623]/5 p-6 shadow-[0_0_30px_rgba(245,166,35,0.15)] transition hover:bg-[#f5a623]/10">
-              <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#f5a623] px-3 py-0.5 text-xs font-semibold text-[#1a1a1a]">
+            <div className="relative rounded-xl border-2 border-[#3b82f6] bg-[#3b82f6]/5 p-6 shadow-[0_0_30px_rgba(59,130,246,0.15)] transition hover:bg-[#3b82f6]/10">
+              <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#3b82f6] px-3 py-0.5 text-xs font-semibold text-[#1a1a1a]">
                 Mest Populær
               </span>
               <h3 className="text-lg font-semibold">Profesjonell</h3>
@@ -295,7 +295,7 @@ export default function Home() {
               <p className="mt-4 text-sm text-gray-400">Best for: Tannleger, advokater, eiendom</p>
               <a
                 href="#kontakt"
-                className="mt-6 block w-full rounded-lg bg-[#f5a623] py-2.5 text-center font-semibold text-[#1a1a1a] transition hover:bg-[#e0951f]"
+                className="mt-6 block w-full rounded-lg bg-[#3b82f6] py-2.5 text-center font-semibold text-[#1a1a1a] transition hover:bg-[#2563eb]"
               >
                 Kom i Gang
               </a>
@@ -314,7 +314,7 @@ export default function Home() {
               <p className="mt-4 text-sm text-gray-400">Best for: Skalerende bedrifter, nettbutikker</p>
               <a
                 href="#kontakt"
-                className="mt-6 block w-full rounded-lg border border-white/30 py-2.5 text-center font-semibold transition hover:border-[#f5a623] hover:bg-[#f5a623]/10"
+                className="mt-6 block w-full rounded-lg border border-white/30 py-2.5 text-center font-semibold transition hover:border-[#3b82f6] hover:bg-[#3b82f6]/10"
               >
                 Kom i Gang
               </a>
@@ -326,7 +326,7 @@ export default function Home() {
         <section id="arbeid" className="border-t border-white/10 px-4 py-20 md:px-6">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-3xl font-bold md:text-4xl">Vårt Nylige Arbeid</h2>
-            <p className="mt-4 inline-block rounded-full bg-[#f5a623] px-6 py-2.5 text-xl font-bold text-[#0a0a0a] shadow-[0_0_20px_rgba(245,166,35,0.3)]">
+            <p className="mt-4 inline-block rounded-full bg-[#3b82f6] px-6 py-2.5 text-xl font-bold text-[#0a0a0a] shadow-[0_0_20px_rgba(59,130,246,0.3)]">
               Bli en av våre 5 første kunder med halv pris på bygging og de 3 første
               månedene
             </p>
@@ -335,7 +335,7 @@ export default function Home() {
             {[1, 2, 3, 4].map((n) => (
               <div
                 key={n}
-                className="group overflow-hidden rounded-xl border border-white/10 bg-white/5 transition hover:border-[#f5a623]/40 hover:bg-white/[0.07]"
+                className="group overflow-hidden rounded-xl border border-white/10 bg-white/5 transition hover:border-[#3b82f6]/40 hover:bg-white/[0.07]"
               >
                 <div className="aspect-video bg-white/10 flex items-center justify-center text-gray-500 text-sm">
                   Bilde kommer
@@ -353,7 +353,7 @@ export default function Home() {
           <p className="mt-8 text-center">
             <a
               href="#"
-              className="font-medium text-[#f5a623] hover:underline"
+              className="font-medium text-[#3b82f6] hover:underline"
             >
               Se hele porteføljen
             </a>
@@ -366,7 +366,7 @@ export default function Home() {
             <h2 className="text-3xl font-bold md:text-4xl">
               Ekte Resultater for Ekte Bedrifter
             </h2>
-            <p className="mt-4 inline-block rounded-full bg-[#f5a623] px-6 py-2.5 text-xl font-bold text-[#0a0a0a] shadow-[0_0_20px_rgba(245,166,35,0.3)]">
+            <p className="mt-4 inline-block rounded-full bg-[#3b82f6] px-6 py-2.5 text-xl font-bold text-[#0a0a0a] shadow-[0_0_20px_rgba(59,130,246,0.3)]">
               Bli en av våre 5 første kunder med halv pris på bygging og de 3 første
               månedene
             </p>
@@ -375,7 +375,7 @@ export default function Home() {
             {[1, 2, 3].map((n) => (
               <div
                 key={n}
-                className="rounded-xl border border-white/10 bg-white/5 p-6 transition hover:border-[#f5a623]/40 hover:bg-white/[0.07]"
+                className="rounded-xl border border-white/10 bg-white/5 p-6 transition hover:border-[#3b82f6]/40 hover:bg-white/[0.07]"
               >
                 <h3 className="font-semibold text-gray-400">Bedriftsnavn (placeholder)</h3>
                 <p className="mt-1 text-sm text-gray-500">Kort historie kommer</p>
@@ -401,7 +401,7 @@ export default function Home() {
         <section className="border-t border-white/10 px-4 py-20 md:px-6">
           <div className="mx-auto max-w-4xl text-center">
             <h2 className="text-3xl font-bold md:text-4xl">Hva Våre Kunder Sier</h2>
-            <p className="mt-4 inline-block rounded-full bg-[#f5a623] px-6 py-2.5 text-xl font-bold text-[#0a0a0a] shadow-[0_0_20px_rgba(245,166,35,0.3)]">
+            <p className="mt-4 inline-block rounded-full bg-[#3b82f6] px-6 py-2.5 text-xl font-bold text-[#0a0a0a] shadow-[0_0_20px_rgba(59,130,246,0.3)]">
               Bli en av våre 5 første kunder med halv pris på bygging og de 3 første
               månedene
             </p>
@@ -410,7 +410,7 @@ export default function Home() {
             {[1, 2, 3].map((i) => (
               <div
                 key={i}
-                className="rounded-xl border border-white/10 bg-white/5 p-6 transition hover:border-[#f5a623]/40 hover:bg-white/[0.07]"
+                className="rounded-xl border border-white/10 bg-white/5 p-6 transition hover:border-[#3b82f6]/40 hover:bg-white/[0.07]"
               >
                 <p className="text-gray-500">&ldquo;Anmeldelsestekst kommer&rdquo;</p>
                 <div className="mt-4 flex items-center gap-3">
@@ -445,12 +445,12 @@ export default function Home() {
             ].map((faq) => (
               <details
                 key={faq.q}
-                className="group rounded-xl border border-white/10 bg-white/5 transition hover:border-white/20 [&[open]]:border-[#f5a623]/40"
+                className="group rounded-xl border border-white/10 bg-white/5 transition hover:border-white/20 [&[open]]:border-[#3b82f6]/40"
               >
                 <summary className="cursor-pointer list-none px-5 py-4 font-medium [&::-webkit-details-marker]:hidden">
                   <span className="flex items-center justify-between gap-2">
                     {faq.q}
-                    <svg className="h-5 w-5 shrink-0 text-[#f5a623] transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="h-5 w-5 shrink-0 text-[#3b82f6] transition group-open:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                   </span>
@@ -474,7 +474,7 @@ export default function Home() {
                     <li key={c.slug}>
                       <Link
                         href={`/nettside/${c.slug}`}
-                        className="text-sm text-gray-400 hover:text-[#f5a623]"
+                        className="text-sm text-gray-400 hover:text-[#3b82f6]"
                       >
                         Nettside {c.name}
                       </Link>
@@ -491,7 +491,7 @@ export default function Home() {
                     <li key={i.slug}>
                       <Link
                         href={`/nettsider-for/${i.slug}`}
-                        className="text-sm text-gray-400 hover:text-[#f5a623]"
+                        className="text-sm text-gray-400 hover:text-[#3b82f6]"
                       >
                         {i.name}
                       </Link>

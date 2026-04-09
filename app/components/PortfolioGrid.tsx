@@ -9,7 +9,7 @@ export function PortfolioGrid({ count = 4 }: PortfolioGridProps) {
       {items.map((n) => (
         <div
           key={n}
-          className="group overflow-hidden rounded-xl border border-white/10 bg-white/5 transition hover:border-[#f5a623]/40 hover:bg-white/[0.07]"
+          className="group overflow-hidden rounded-xl border border-white/10 bg-white/5 transition hover:border-[#3b82f6]/40 hover:bg-white/[0.07]"
         >
           <div className="aspect-video flex items-center justify-center bg-white/10 text-sm text-gray-500">
             Bilde kommer

@@ -61,7 +61,7 @@ export function LeadPopup() {
 
         {successOpen ? (
           <>
-            <p className="text-sm font-semibold uppercase tracking-wide text-[#f5a623]">
+            <p className="text-sm font-semibold uppercase tracking-wide text-[#3b82f6]">
               Mottatt
             </p>
             <h2 className="mt-2 text-2xl font-bold">Takk for henvendelsen!</h2>
@@ -69,14 +69,14 @@ export function LeadPopup() {
             <button
               type="button"
               onClick={close}
-              className="mt-6 w-full rounded-lg bg-[#f5a623] py-3 font-semibold text-[#1a1a1a] transition hover:bg-[#e0951f]"
+              className="mt-6 w-full rounded-lg bg-[#3b82f6] py-3 font-semibold text-[#1a1a1a] transition hover:bg-[#2563eb]"
             >
               Ok, jeg skjønner
             </button>
           </>
         ) : (
           <>
-            <p className="text-sm font-semibold uppercase tracking-wide text-[#f5a623]">
+            <p className="text-sm font-semibold uppercase tracking-wide text-[#3b82f6]">
               Vent! Før du går...
             </p>
             <h2 id="popup-title" className="mt-2 text-2xl font-bold">
@@ -85,7 +85,7 @@ export function LeadPopup() {
             <p className="mt-2 text-gray-400">
               Se ditt skreddersydde design før du betaler noe
             </p>
-            <p className="mt-4 inline-block rounded-full bg-[#f5a623] px-5 py-2 text-base font-bold text-[#0a0a0a] shadow-[0_0_20px_rgba(245,166,35,0.3)]">
+            <p className="mt-4 inline-block rounded-full bg-[#3b82f6] px-5 py-2 text-base font-bold text-[#0a0a0a] shadow-[0_0_20px_rgba(59,130,246,0.3)]">
               Bli en av våre 5 første kunder med halv pris på bygging og de 3
               første månedene
             </p>
@@ -141,7 +141,7 @@ export function LeadPopup() {
                   type="email"
                   required
                   placeholder="E-post *"
-                  className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-[#f5a623] focus:outline-none focus:ring-1 focus:ring-[#f5a623]"
+                  className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-[#3b82f6] focus:outline-none focus:ring-1 focus:ring-[#3b82f6]"
                 />
               </div>
               <div>
@@ -152,7 +152,7 @@ export function LeadPopup() {
                   type="tel"
                   required
                   placeholder="Telefonnummer *"
-                  className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-[#f5a623] focus:outline-none focus:ring-1 focus:ring-[#f5a623]"
+                  className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-[#3b82f6] focus:outline-none focus:ring-1 focus:ring-[#3b82f6]"
                 />
               </div>
               <div>
@@ -162,7 +162,7 @@ export function LeadPopup() {
                   name="business"
                   type="text"
                   placeholder="Bedriftsnavn (valgfritt)"
-                  className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-[#f5a623] focus:outline-none focus:ring-1 focus:ring-[#f5a623]"
+                  className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-[#3b82f6] focus:outline-none focus:ring-1 focus:ring-[#3b82f6]"
                 />
               </div>
               <div>
@@ -172,12 +172,12 @@ export function LeadPopup() {
                   name="details"
                   type="text"
                   placeholder="Detaljer (valgfritt)"
-                  className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-[#f5a623] focus:outline-none focus:ring-1 focus:ring-[#f5a623]"
+                  className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-[#3b82f6] focus:outline-none focus:ring-1 focus:ring-[#3b82f6]"
                 />
               </div>
               <button
                 type="submit"
-                className="w-full rounded-lg bg-[#f5a623] py-3 font-semibold text-[#1a1a1a] transition hover:bg-[#e0951f]"
+                className="w-full rounded-lg bg-[#3b82f6] py-3 font-semibold text-[#1a1a1a] transition hover:bg-[#2563eb]"
                 disabled={submitting}
               >
                 {submitting ? "Sender..." : "Få mitt gratis design"}
@@ -186,7 +186,7 @@ export function LeadPopup() {
 
             <ul className="mt-4 flex flex-wrap gap-4 text-sm text-gray-400">
               <li className="flex items-center gap-1.5">
-                <svg className="h-4 w-4 text-[#f5a623]" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="h-4 w-4 text-[#3b82f6]" fill="currentColor" viewBox="0 0 20 20">
                   <path
                     fillRule="evenodd"
                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
@@ -196,7 +196,7 @@ export function LeadPopup() {
                 Ingen kredittkort
               </li>
               <li className="flex items-center gap-1.5">
-                <svg className="h-4 w-4 text-[#f5a623]" fill="currentColor" viewBox="0 0 20 20">
+                <svg className="h-4 w-4 text-[#3b82f6]" fill="currentColor" viewBox="0 0 20 20">
                   <path
                     fillRule="evenodd"
                     d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"

@@ -4,8 +4,8 @@
   --background: #0a0a0a;
   --foreground: #ffffff;
   --muted: #a3a3a3;
-  --accent: #f5a623;
-  --accent-hover: #e0951f;
+  --accent: #3b82f6;
+  --accent-hover: #2563eb;
 }
 
 @theme inline {

@@ -70,7 +70,7 @@ export function ContactForm({
             type="text"
             required
             placeholder="Navn *"
-            className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-[#f5a623] focus:outline-none focus:ring-1 focus:ring-[#f5a623]"
+            className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-[#3b82f6] focus:outline-none focus:ring-1 focus:ring-[#3b82f6]"
           />
         </div>
         <div className="flex-1">
@@ -83,7 +83,7 @@ export function ContactForm({
             type="email"
             required
             placeholder="E-post *"
-            className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-[#f5a623] focus:outline-none focus:ring-1 focus:ring-[#f5a623]"
+            className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-[#3b82f6] focus:outline-none focus:ring-1 focus:ring-[#3b82f6]"
           />
         </div>
         <div className="flex-1 sm:basis-full">
@@ -95,13 +95,13 @@ export function ContactForm({
             name="details"
             type="text"
             placeholder="Detaljer (valgfritt)"
-            className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-[#f5a623] focus:outline-none focus:ring-1 focus:ring-[#f5a623]"
+            className="w-full rounded-lg border border-white/20 bg-white/5 px-4 py-3 text-white placeholder-gray-500 focus:border-[#3b82f6] focus:outline-none focus:ring-1 focus:ring-[#3b82f6]"
           />
         </div>
         <button
           type="submit"
           disabled={submitting}
-          className="rounded-lg bg-[#f5a623] px-6 py-3 font-semibold text-[#1a1a1a] transition hover:bg-[#e0951f] disabled:opacity-70"
+          className="rounded-lg bg-[#3b82f6] px-6 py-3 font-semibold text-[#1a1a1a] transition hover:bg-[#2563eb] disabled:opacity-70"
         >
           {submitting ? "Sender..." : ctaLabel}
         </button>
@@ -140,7 +140,7 @@ export function ContactForm({
               </svg>
             </button>
 
-            <p className="text-sm font-semibold uppercase tracking-wide text-[#f5a623]">
+            <p className="text-sm font-semibold uppercase tracking-wide text-[#3b82f6]">
               Mottatt
             </p>
             <h2 className="mt-2 text-2xl font-bold">Takk for henvendelsen!</h2>
@@ -150,7 +150,7 @@ export function ContactForm({
             <button
               type="button"
               onClick={() => setSuccessOpen(false)}
-              className="mt-6 w-full rounded-lg bg-[#f5a623] py-3 font-semibold text-[#1a1a1a] transition hover:bg-[#e0951f]"
+              className="mt-6 w-full rounded-lg bg-[#3b82f6] py-3 font-semibold text-[#1a1a1a] transition hover:bg-[#2563eb]"
             >
               Ok, takk
             </button>

@@ -16,7 +16,7 @@ export function PricingSection({
           Enkel, Transparent Prising
         </h2>
         {highlightCity && (
-          <p className="mt-3 text-lg text-[#f5a623] font-medium">
+          <p className="mt-3 text-lg text-[#3b82f6] font-medium">
             Samme priser for småbedrifter i {highlightCity}
           </p>
         )}
@@ -36,13 +36,13 @@ export function PricingSection({
           </p>
           <Link
             href={contactHref}
-            className="mt-6 block w-full rounded-lg border border-white/30 py-2.5 text-center font-semibold transition hover:border-[#f5a623] hover:bg-[#f5a623]/10"
+            className="mt-6 block w-full rounded-lg border border-white/30 py-2.5 text-center font-semibold transition hover:border-[#3b82f6] hover:bg-[#3b82f6]/10"
           >
             Kom i Gang
           </Link>
         </div>
-        <div className="relative rounded-xl border-2 border-[#f5a623] bg-[#f5a623]/5 p-6 shadow-[0_0_30px_rgba(245,166,35,0.15)] transition hover:bg-[#f5a623]/10">
-          <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#f5a623] px-3 py-0.5 text-xs font-semibold text-[#1a1a1a]">
+        <div className="relative rounded-xl border-2 border-[#3b82f6] bg-[#3b82f6]/5 p-6 shadow-[0_0_30px_rgba(59,130,246,0.15)] transition hover:bg-[#3b82f6]/10">
+          <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-[#3b82f6] px-3 py-0.5 text-xs font-semibold text-[#1a1a1a]">
             Mest Populær
           </span>
           <h3 className="text-lg font-semibold">Profesjonell</h3>
@@ -58,7 +58,7 @@ export function PricingSection({
           </p>
           <Link
             href={contactHref}
-            className="mt-6 block w-full rounded-lg bg-[#f5a623] py-2.5 text-center font-semibold text-[#1a1a1a] transition hover:bg-[#e0951f]"
+            className="mt-6 block w-full rounded-lg bg-[#3b82f6] py-2.5 text-center font-semibold text-[#1a1a1a] transition hover:bg-[#2563eb]"
           >
             Kom i Gang
           </Link>
@@ -77,7 +77,7 @@ export function PricingSection({
           </p>
           <Link
             href={contactHref}
-            className="mt-6 block w-full rounded-lg border border-white/30 py-2.5 text-center font-semibold transition hover:border-[#f5a623] hover:bg-[#f5a623]/10"
+            className="mt-6 block w-full rounded-lg border border-white/30 py-2.5 text-center font-semibold transition hover:border-[#3b82f6] hover:bg-[#3b82f6]/10"
           >
             Kom i Gang
           </Link>

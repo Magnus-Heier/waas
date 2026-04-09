@@ -89,29 +89,29 @@ export default async function IndustryPage({ params }: Props) {
         {/* Hero */}
         <section className="relative flex min-h-[80vh] flex-col items-center justify-center px-4 py-20 text-center md:px-6">
           <div
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(245,166,35,0.15),transparent)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(59,130,246,0.15),transparent)]"
             aria-hidden
           />
           <h1 className="relative text-4xl font-bold leading-tight tracking-tight md:text-5xl lg:text-6xl">
             Nettside til {industry.keyword}
           </h1>
-          <p className="relative mt-6 max-w-2xl text-lg text-[#f5a623] font-medium md:text-xl">
+          <p className="relative mt-6 max-w-2xl text-lg text-[#3b82f6] font-medium md:text-xl">
             {industry.heroHeadline}
           </p>
-          <p className="relative mt-6 inline-block rounded-full bg-[#f5a623] px-6 py-2.5 text-xl font-bold text-[#0a0a0a] shadow-[0_0_20px_rgba(245,166,35,0.3)]">
+          <p className="relative mt-6 inline-block rounded-full bg-[#3b82f6] px-6 py-2.5 text-xl font-bold text-[#0a0a0a] shadow-[0_0_20px_rgba(59,130,246,0.3)]">
             Bli en av våre 5 første kunder med halv pris på bygging og de 3 første
             månedene
           </p>
           <div className="relative mt-10 flex flex-col gap-4 sm:flex-row sm:justify-center">
             <Link
               href="/#kontakt"
-              className="inline-flex items-center justify-center rounded-lg bg-[#f5a623] px-6 py-3.5 font-semibold text-[#1a1a1a] transition hover:bg-[#e0951f]"
+              className="inline-flex items-center justify-center rounded-lg bg-[#3b82f6] px-6 py-3.5 font-semibold text-[#1a1a1a] transition hover:bg-[#2563eb]"
             >
               Få Gratis Design →
             </Link>
             <a
               href="tel:+4748660715"
-              className="inline-flex items-center justify-center rounded-lg border border-white/30 px-6 py-3.5 font-semibold transition hover:border-[#f5a623] hover:bg-white/5"
+              className="inline-flex items-center justify-center rounded-lg border border-white/30 px-6 py-3.5 font-semibold transition hover:border-[#3b82f6] hover:bg-white/5"
             >
               Ring Nå: +47 48 66 07 15
             </a>
@@ -131,7 +131,7 @@ export default async function IndustryPage({ params }: Props) {
                 key={i}
                 className="flex items-start gap-3 rounded-lg border border-white/10 bg-white/5 px-4 py-3 text-gray-300"
               >
-                <span className="text-[#f5a623]">✕</span>
+                <span className="text-[#3b82f6]">✕</span>
                 {point}
               </li>
             ))}
@@ -149,9 +149,9 @@ export default async function IndustryPage({ params }: Props) {
             {industry.features.map((feature) => (
               <div
                 key={feature}
-                className="rounded-xl border border-white/10 bg-white/5 p-6 transition hover:border-[#f5a623]/40 hover:bg-white/[0.07]"
+                className="rounded-xl border border-white/10 bg-white/5 p-6 transition hover:border-[#3b82f6]/40 hover:bg-white/[0.07]"
               >
-                <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#f5a623]/20 text-[#f5a623]">
+                <span className="mb-3 flex h-10 w-10 items-center justify-center rounded-lg bg-[#3b82f6]/20 text-[#3b82f6]">
                   <svg
                     className="h-5 w-5"
                     fill="none"
@@ -199,9 +199,9 @@ export default async function IndustryPage({ params }: Props) {
             ].map((item) => (
               <div
                 key={item.step}
-                className="rounded-xl border border-white/10 bg-white/5 p-8 transition hover:border-[#f5a623]/40 hover:bg-white/[0.07]"
+                className="rounded-xl border border-white/10 bg-white/5 p-8 transition hover:border-[#3b82f6]/40 hover:bg-white/[0.07]"
               >
-                <span className="text-3xl font-bold text-[#f5a623]">
+                <span className="text-3xl font-bold text-[#3b82f6]">
                   {item.step}
                 </span>
                 <h3 className="mt-4 text-xl font-semibold">{item.title}</h3>
@@ -219,14 +219,14 @@ export default async function IndustryPage({ params }: Props) {
             <h2 className="text-3xl font-bold md:text-4xl">
               Relevant arbeid for {industry.name}
             </h2>
-            <p className="mt-4 inline-block rounded-full bg-[#f5a623] px-6 py-2.5 text-xl font-bold text-[#0a0a0a] shadow-[0_0_20px_rgba(245,166,35,0.3)]">
+            <p className="mt-4 inline-block rounded-full bg-[#3b82f6] px-6 py-2.5 text-xl font-bold text-[#0a0a0a] shadow-[0_0_20px_rgba(59,130,246,0.3)]">
               Bli en av våre 5 første kunder med halv pris på bygging og de 3 første
               månedene
             </p>
           </div>
           <PortfolioGrid count={2} />
           <p className="mt-8 text-center">
-            <Link href="/#arbeid" className="font-medium text-[#f5a623] hover:underline">
+            <Link href="/#arbeid" className="font-medium text-[#3b82f6] hover:underline">
               Se hele porteføljen
             </Link>
           </p>
@@ -243,13 +243,13 @@ export default async function IndustryPage({ params }: Props) {
             {industry.faqs.map((faq) => (
               <details
                 key={faq.q}
-                className="group rounded-xl border border-white/10 bg-white/5 transition hover:border-white/20 [&[open]]:border-[#f5a623]/40"
+                className="group rounded-xl border border-white/10 bg-white/5 transition hover:border-white/20 [&[open]]:border-[#3b82f6]/40"
               >
                 <summary className="cursor-pointer list-none px-5 py-4 font-medium [&::-webkit-details-marker]:hidden">
                   <span className="flex items-center justify-between gap-2">
                     {faq.q}
                     <svg
-                      className="h-5 w-5 shrink-0 text-[#f5a623] transition group-open:rotate-180"
+                      className="h-5 w-5 shrink-0 text-[#3b82f6] transition group-open:rotate-180"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -282,7 +282,7 @@ export default async function IndustryPage({ params }: Props) {
                 <Link
                   key={ind.slug}
                   href={`/nettsider-for/${ind.slug}`}
-                  className="rounded-lg border border-white/20 px-4 py-2 text-gray-300 transition hover:border-[#f5a623] hover:text-[#f5a623]"
+                  className="rounded-lg border border-white/20 px-4 py-2 text-gray-300 transition hover:border-[#3b82f6] hover:text-[#3b82f6]"
                 >
                   {ind.name}
                 </Link>
@@ -302,7 +302,7 @@ export default async function IndustryPage({ params }: Props) {
                 <Link
                   key={c.slug}
                   href={`/nettside/${c.slug}`}
-                  className="rounded-lg border border-white/20 px-4 py-2 text-gray-300 transition hover:border-[#f5a623] hover:text-[#f5a623]"
+                  className="rounded-lg border border-white/20 px-4 py-2 text-gray-300 transition hover:border-[#3b82f6] hover:text-[#3b82f6]"
                 >
                   Nettside {c.name}
                 </Link>
@@ -329,7 +329,7 @@ export default async function IndustryPage({ params }: Props) {
       </main>
 
       <footer className="border-t border-white/10 px-4 py-8 text-center text-sm text-gray-500">
-        <Link href="/" className="text-[#f5a623] hover:underline">
+        <Link href="/" className="text-[#3b82f6] hover:underline">
           Til forsiden
         </Link>
         {" · "}
